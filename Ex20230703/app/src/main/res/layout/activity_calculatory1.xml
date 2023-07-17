@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CalculatorActivity">
+
+    <Button
+        android:id="@+id/plus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="더하기"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="176dp"
+        android:onClick="Plus"/>
+
+    <Button
+        android:id="@+id/minus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="뺄셈"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="238dp"
+        android:onClick="Minus"/>
+
+    <Button
+        android:id="@+id/multiple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="곱셈"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="305dp"
+        android:onClick="Multiple"/>
+
+    <Button
+        android:id="@+id/na"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="나눗셈"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="369dp"
+        android:onClick="Nanu"/>
+    <EditText
+        android:id="@+id/num1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="숫자를 입력하세요."
+        android:gravity="center"/>
+    <EditText
+        android:id="@+id/num2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="숫자를 입력하세요."
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="연산결과 : 0"
+        android:textSize="32dp"
+        android:gravity="center"
+        />
+
+</LinearLayout>
