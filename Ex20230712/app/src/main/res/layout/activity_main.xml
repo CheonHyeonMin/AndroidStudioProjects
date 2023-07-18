@@ -62,13 +62,13 @@
         app:layout_constraintGuide_percent="0.9" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/edt_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="이메일"
-        android:inputType="text"
+        android:inputType="text|textEmailAddress"
         android:padding="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.495"
@@ -76,14 +76,14 @@
         app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/edt_pw"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
         android:background="#FFFFFF"
         android:ems="10"
         android:hint="비밀번호"
-        android:inputType="text"
+        android:inputType="text|textPassword"
         android:padding="10dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline7"
         app:layout_constraintHorizontal_bias="0.0"

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <!--  권한설정할때 꼭 추가  -->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <!-- 안드로이드 앱에서 인터넷에 접속할 수 있도록 권한 설정 -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,24 +12,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ex20230712"
+        android:theme="@style/Theme.Ex0718"
         tools:targetApi="31">
         <activity
-            android:name=".SubActivity"
-            android:exported="false">
-
-        </activity>
-
+            android:name=".MovieActivity"
+            android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".WeatherActivity"
             android:exported="true">
-            <!-- android:exported : main으로 할거냐 말거냐  true or false -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="false"></activity>
     </application>
 
 </manifest>

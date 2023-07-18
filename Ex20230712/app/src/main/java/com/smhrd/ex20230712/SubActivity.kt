@@ -30,10 +30,14 @@ class SubActivity : AppCompatActivity() {
         //listView에 adapter 연결~
         listView.adapter = adapter
 
+
+        var MyIntent : Intent = intent //getIntent
+        var email : String? = MyIntent.getStringExtra("email")
+        btn_main.text = email + "님 종료하시겠습니까?"
+
         btn_main.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-              finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
         }
 
     }
