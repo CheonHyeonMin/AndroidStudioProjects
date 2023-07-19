@@ -34,9 +34,6 @@ class BackgroundActivity : AppCompatActivity() {
             // 4. 나는 종료
             finish()
 
-
-
-
         })
 
     }
