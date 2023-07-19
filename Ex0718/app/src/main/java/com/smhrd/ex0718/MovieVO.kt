@@ -1,3 +1,3 @@
 package com.smhrd.ex0718
 
-data class MovieVO(var rank:Int, var movieNm:String, var openDt:String)
+data class MovieVO(var rank:String, var movieNm:String, var openDt:String)
