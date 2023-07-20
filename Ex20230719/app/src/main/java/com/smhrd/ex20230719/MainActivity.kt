@@ -42,18 +42,40 @@ class MainActivity : AppCompatActivity() {
         var MyIntent : Intent = intent
         var ID : String? = MyIntent.getStringExtra("id")
 
+//        var frLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+//            if(it.resultCode == RESULT_OK){
+//                var result : Int = it.data!!.getIntExtra("color", -1)
+//                tv_nick.text = ID+ "님 환영합니다."
+//            }
+//        }
 
+        var frLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+            if (it.resultCode == RESULT_OK) {
+                val data: Intent? = it.data
+                val id: String? = data?.getStringExtra("id")
+
+                if (id != null) {
+                    tv_nick.text = "Welcome to $id"
+                    tv_nick.visibility = View.VISIBLE
+                } else {
+                    tv_nick.visibility = View.INVISIBLE
+                }
+            }
+        }
+
+//        tv_nick.text = ID+ "님 환영합니다."
         mbtn_login.setOnClickListener {
             val intent = Intent(this, SubActivity::class.java)
+
             frLauncher.launch(intent)
         }
-        if(tv_nick.text == null){
-            tv_nick.visibility = View.VISIBLE
-        }
-        else{
-            tv_nick.text = ID + "님 환영합니다."
-        }
-        var frLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
+//        if(tv_nick.text == null){
+//            tv_nick.visibility = View.VISIBLE
+//        }
+//        else{
+//            tv_nick.text = ID + "님 환영합니다."
+//        }
+
 
     }
 }

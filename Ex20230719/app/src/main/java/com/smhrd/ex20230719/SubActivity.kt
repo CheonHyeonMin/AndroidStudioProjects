@@ -35,7 +35,9 @@ class SubActivity : AppCompatActivity() {
                     intent.putExtra("id",inputId)
                     intent.putExtra("pw",inputPw)
 
-                    startActivity(intent)
+                    setResult(RESULT_OK, intent)
+                    // 4. 나는 종료
+                    finish()
                 }
             }
             else{
