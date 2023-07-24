@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
             val request = object: StringRequest(
                 Request.Method.POST,
                 //manifest.xml ->android:usesCleartextTraffic="true"
-                "http://172.30.1.43:8888/login", //http
+                "http://172.30.1.43:8089/login", //http
                 {
                         response ->
                     Log.d("response", response.toString())

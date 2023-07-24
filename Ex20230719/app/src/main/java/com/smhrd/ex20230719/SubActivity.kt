@@ -25,15 +25,18 @@ class SubActivity : AppCompatActivity() {
         btn_login = findViewById(R.id.btn_login)
 
         btn_login.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+
 
             val inputId = edt_id.text.toString()
             val inputPw = edt_pw.text.toString()
 
             if(members.containsKey(inputId)){
                 if(members.get(inputId).equals(inputPw)){
+                    var intent= Intent()
+                    //그냥 intent도 되네? 왜 되는거지
                     intent.putExtra("id",inputId)
                     intent.putExtra("pw",inputPw)
+
 
                     setResult(RESULT_OK, intent)
                     // 4. 나는 종료

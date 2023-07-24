@@ -39,8 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         listView.adapter = adapter
 
-        var MyIntent : Intent = intent
-        var ID : String? = MyIntent.getStringExtra("id")
+//        var MyIntent : Intent = intent
+//        var ID : String? = MyIntent.getStringExtra("id")
 
 //        var frLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
 //            if(it.resultCode == RESULT_OK){
@@ -51,12 +51,18 @@ class MainActivity : AppCompatActivity() {
 
         var frLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             if (it.resultCode == RESULT_OK) {
-                val data: Intent? = it.data
-                val id: String? = data?.getStringExtra("id")
+//                val data: Intent? = it.data
+//                val id: String? = data?.getStringExtra("id")
+
+                var id = it.data!!.getStringExtra("id")
+
 
                 if (id != null) {
-                    tv_nick.text = "Welcome to $id"
+                    tv_nick.text = id +"님 환영합니다."
                     tv_nick.visibility = View.VISIBLE
+                    btn_write.visibility = View.VISIBLE
+                    mbtn_login.text = "로그아웃"
+
                 } else {
                     tv_nick.visibility = View.INVISIBLE
                 }
