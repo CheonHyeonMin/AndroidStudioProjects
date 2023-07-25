@@ -1,6 +1,6 @@
 package com.smhrd.pokemon
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,17 +18,20 @@ class DetailActivity : AppCompatActivity() {
     lateinit var dtpokemon : ImageView
     lateinit var type1 : TextView
     lateinit var type2 : TextView
-    lateinit var dtname : TextView
-    var pokemonList = ArrayList<PokemonVO>()
+    lateinit var dtweight : TextView
+    lateinit var tvpokemon : TextView
+    var pokemonList = ArrayList<String>()
 
     lateinit var reqQueue : RequestQueue
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
         dtpokemon = findViewById(R.id.dtpokemon)
         type1 = findViewById(R.id.type1)
         type2 = findViewById(R.id.type2)
-        dtname = findViewById(R.id.dtname)
+        dtweight = findViewById(R.id.dtweight)
+        tvpokemon = findViewById(R.id.tvPokemon)
 
 
         reqQueue = Volley.newRequestQueue(this@DetailActivity)
@@ -40,10 +43,14 @@ class DetailActivity : AppCompatActivity() {
 
         val intent =  getIntent()
         var id = intent.getIntExtra("pokemonID", -1)
+        Log.d("id", id.toString())
 
 
 
-        val imgUrl = "https:/raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
+//        val imgUrl = "https:/raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/$id.png"
+        val imgUrl = intent.getStringExtra("pokemonImgPath")
+        val name = intent.getStringExtra("pokemonNm")
+
         val dataurl = "https://pokeapi.co/api/v2/pokemon/$id"
         var img = Glide.with(this.applicationContext).load(imgUrl).into(dtpokemon)
 
@@ -60,11 +67,27 @@ class DetailActivity : AppCompatActivity() {
 //                val pokemon = PokemonVO(id, imgUrl, name)
 //                pokemonList.add(pokemon)
                 var type = result.getJSONArray("types")
+                Log.d("type", type.toString())
+                for(index in 0 until type.length()){
+                    pokemonList.add(type.getJSONObject(index).getJSONObject("type").getString("name"))
+                }
+                type1.text = pokemonList.get(0)
+                if(pokemonList.size == 2){
+                    type2.text= pokemonList.get(1)
+                }
+                else{
+                    type2.text = ""
+                }
+                dtweight.text = result.getDouble("weight").toString()
+                tvpokemon.text = name
+
+
+
 //                var name = result.getJSONArray("names").getJSONObject(2).getString("name")
 //                dtname.text= intent.getStringExtra("pokemonNm")
-                type1.text = type.getJSONObject(id).getJSONObject("type").getString("name")
+//                type1.text = type.getJSONObject(id).getJSONObject("type").getString("name")
 //                type2.text = type.getJSONObject(id).getJSONObject("type").getString("slot")
-                dtpokemon = img.view
+//                dtpokemon = img.view
 
 
             },

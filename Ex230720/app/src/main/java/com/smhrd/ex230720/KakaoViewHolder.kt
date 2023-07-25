@@ -5,6 +5,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 
+                        //View타입 객체 itemView는 원래 template.xml파일인데 Inflate함
 class KakaoViewHolder(var itemView : View) : ViewHolder(itemView) {
     //class KakaoViewHolder extends ViewHolder{
     //      KakaoViewHolder(View itemView){  생성자

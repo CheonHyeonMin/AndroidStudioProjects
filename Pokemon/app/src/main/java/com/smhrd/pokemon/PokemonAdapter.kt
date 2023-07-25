@@ -39,7 +39,7 @@ class PokemonAdapter(var datas:ArrayList<PokemonVO>, var context:Context ) : Rec
 
         holder.itemView.setOnClickListener{
             //intent 사용 -> 포켓몬 상세정보(DetatilActivity)로 전환
-            var intent = Intent(context, DetailActivity::class.java)
+            var intent = Intent(context, DetaillActivity::class.java)
             //안드로이드 앱에서 새로운 액티비티가 실행될 때마다 기존에 사용하던 액티비티는 스택에 쌓이게 됨
             // -> 원하지 않는 결과를 도출할 수 있어 FLAG를 활용하여 조정 가능
             // FLAG_ACTIVITY_NEW_TASK : 새작업을 시작하겠다 -> 일반적으로 Adapter 내에서 startActivity 사용 시 사용
@@ -50,7 +50,6 @@ class PokemonAdapter(var datas:ArrayList<PokemonVO>, var context:Context ) : Rec
             intent.putExtra("pokemonID",pokemon.pokemonID)
             intent.putExtra("pokemonImgPath", pokemon.pokemonImgPath)
             intent.putExtra("pokemonNm", pokemon.pokemonNm)
-
 
             context.startActivity(intent)
 

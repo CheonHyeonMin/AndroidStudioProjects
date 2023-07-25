@@ -1,36 +1,76 @@
 package com.smhrd.ex230720
 
 import android.content.Context
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 
 
 class KakaoAdapter(var context : Context, var template : Int, var data : ArrayList<KakaoVO>)
     :Adapter<KakaoViewHolder>(){
+
         //extends Adapter<KakaoViewHolder>
 
-        //상위클래스인 Adapter 클래스가 추상클래스이기 때문이다.
-        // => 추상클래스를 상속받는 하위클래스는 반드시 추상메소드를 오버라이딩(재정의) 해야한다! 오버라이딩을 하지 않을꺼면 KakaoAdapter도 추상 클래스가 되어야 한다.
+    //상위클래스인 Adapter 클래스가 추상클래스이기 때문이다.
+    // => 추상클래스를 상속받는 하위클래스는 반드시 추상메소드를 오버라이딩(재정의) 해야한다! 오버라이딩을 하지 않을꺼면 KakaoAdapter도 추상 클래스가 되어야 한다.
+    // 추상 메서드 :
+    //제네릭(Generic)
+    // 클래스를 설계하는 시점에는 자료형을 기재하지 않음
+    // 자료형은 개발자가 결정함
+    // 객체를 생성할 때 자료형을 결정함
+    // 상속받고 제네릭 적고 오버라이딩
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KakaoViewHolder {
+        //public KakaoViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
 
-        // 상속은 더 구체적이고 더 나은 것을 만들어가는 과정
-        //상속을 받으면 상위 클래스의 기능을 사용할 수 있음
-        //상속을 받으면 상위 클래스 계열이라고 볼 수 있음
-        //가장 추상적인 것은 전화기
-        //가장 구체적인 것은 ios, Android
-        //업캐스팅 :하위 클래스 타입의 객체가 상위 클래스 타입의 변수에 담기는 것(형변환이 가능함)
-        // 전화기 a = new 핸드폰(); 핸드폰 객체가 전화기로 형변환함 => 핸드폰은 전화기 계열이기 때문에 가능함
-        //공통되는 부분을 위로 올리는건 추상화
-        // 본사 a = new 첨단점();
-        // a.떡볶이(); 하면 첨단점 떡볶이가 나온다. => 첨단점에서 레시피를 재정의 했기 때문에 (상속은 더 구체적이고 더 나은 것을 만들어가기 위함)
-        // 본사 b = new 동명점();
-        // b.떡볶이(); 하면 본사 레시피가 나온다.
-        // 동명점도 레시피를 수정함(재정의함(오버라이딩))
-        // 레시피는 하위클래스가 정하고 메뉴는 상위클래스에서 정해줌(틀만 짜줌 (추상메서드))
-        // 본사에서는 레시피의 틀만 짜줬기 때문에 추상메서드임 구현(오버라이딩)은 각 하위 클래스(지점)에서 구현해야됨
-        // (상호명만 주는 것은 오로지 업캐스팅 용도로)만 사용 구체적인 구현은 각 하위 클래스(지점)들이 구현함
-        // 추상클래스는 객체를 생성할 수 없음
-        // 추상 메서드도 있고 일반 메서드도 있으면 추상클래스
-        // 추상 메서드만 있으면 인터페이스
-        // 메서드 앞에 final 붙여주면 오버라이딩 불가능
-        // 클래스 앞에 final 붙으면 상속 불가능
+        //ViewHolder를 생성하는 곳! =>RecyclerView 만들 때 한번만 호출!
+
+        //xml => kt(java) 객체로 만드는 작업 Inflater 라고 부른다.
+        //대표적으로 findViewById
+
+        //ViewHolder를 생성할 때 Template.xml을 View타입으로 변환해서 전달
+
+//        Inflate : LayoutInflater 클래스의 Inflate() 메서드를 사용해 View를 생성하는 것
+
+//        Inflater : Layoutflater 클래스의 인스턴스
+
+        var template_View  : View = LayoutInflater.from(context).inflate(template, parent, false)
+
+        var VH : KakaoViewHolder = KakaoViewHolder(template_View)
+
+        return VH
+
+    }
+
+    override fun getItemCount(): Int {
+        // public int getItemCount(){}
+
+        //전체 아이템의 개수를 리턴하는 곳!
+        // return 5; =>
+        return data.size //전체 메세지의 개수
+
+    }
+
+    override fun onBindViewHolder(holder: KakaoViewHolder, position: Int) { //상속 받았을 떄 매개변수 결정됨
+        // 이전에 쓰던 ViewHolder에서 View들 꺼내다가 ArrayList에 저장된 데이터들로 꾸미는 곳!
+        // 이전에 쓰던 onCreateViewHolder에서 사용한 것들을 재활용해서 사용하기 때문에 onCreateViewHolder는 한번만 실행됨
+        // getItemCount에 적힌 숫자만큼 호출!
+        var img : ImageView = holder.img
+        var tv_msg : TextView = holder.tv_msg
+
+        var KakaoMessage : KakaoVO = data.get(position)
+
+        img.setImageResource(KakaoMessage.imgID)
+        tv_msg.text = KakaoMessage.msg
+
+
+        //ver2.
+        holder.tv_name.text = data.get(position).name
+        holder.tv_time.text = data.get(position).time
+
+    }
+
 
 }

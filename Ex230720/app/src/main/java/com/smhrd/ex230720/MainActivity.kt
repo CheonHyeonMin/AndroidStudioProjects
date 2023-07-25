@@ -2,6 +2,10 @@ package com.smhrd.ex230720
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     //ListView의 업그레이드 버전
@@ -16,15 +20,28 @@ class MainActivity : AppCompatActivity() {
     // 1. Data(VO, ArryaList)
     // -VO => 사용자(개발자) 정의 자료형!
     // 2. Template(.xml)
-    // 3. Adapter
-    // - ViewHolder도 만들어야함!
+    // 3. Adapter(.kt)
+    // - ViewHolder(.kt) 도 만들어야함!
+
+
+
+
 
     //크기를 바꿔주기 위해서는 ArrayList를 사용하는게 좋음
     // VO를 담은 ArrayList 설정
 
+    lateinit var rv : RecyclerView
+    lateinit var btn_send : Button
+    lateinit var edt_msg : EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        rv = findViewById(R.id.listView)
+        btn_send = findViewById(R.id.btn_send)
+        edt_msg = findViewById(R.id.edt_msg)
+
+
 
         var data = ArrayList<KakaoVO>()
         //ArrayList<KakaoVO> data = new ArrayList<KakaoVO>()
@@ -44,6 +61,31 @@ class MainActivity : AppCompatActivity() {
         data.add(a3)
         data.add(a4)
         data.add(a5)
+
+        var adapter : KakaoAdapter = KakaoAdapter(applicationContext, R.layout.template, data)
+
+        // ***
+        rv.layoutManager = LinearLayoutManager(applicationContext) //목록형
+        rv.adapter = adapter
+
+        btn_send.setOnClickListener {
+            data.add(KakaoVO(R.drawable.img2, "이름2", edt_msg.text.toString(), "오후 16:38"))
+
+            //adapter 새로고침
+            adapter.notifyDataSetChanged()
+
+            //스크롤 옮기기
+            rv.smoothScrollToPosition(data.size-1)
+
+            //EditText 비우기
+            edt_msg.text.clear()
+
+        }
+
+
+
+
+
 
     }
 }
