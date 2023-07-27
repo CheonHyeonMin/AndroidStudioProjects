@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorPrimary">#FDB813</color>
+    <color name="colorPrimaryDark">#994F00</color>
+    <color name="colorAccent">#FFBB33</color>
+    <color name="colorIcon">#3F3F3F</color>
+    <color name="colorText">#070707</color>
+    <color name="senderBubble">#FFEAD3</color>
+    <color name="receiverBubble">#EBEBEB</color>
 </resources>

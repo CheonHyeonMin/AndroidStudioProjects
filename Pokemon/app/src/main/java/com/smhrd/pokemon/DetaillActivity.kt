@@ -67,6 +67,7 @@ class DetaillActivity : AppCompatActivity() {
                 tvType2.text = type2
                 tvHeight.text = height.toString()+"cm"
                 tvWeight.text = weight.toString()+"kg"
+
             },
             {
                 error ->
