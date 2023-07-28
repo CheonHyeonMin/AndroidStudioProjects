@@ -4,7 +4,18 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <!--저장할 수 있도록 해줌-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+
+
+
+
     <application
+
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,6 +26,9 @@
         android:theme="@style/Theme.Fragment"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".BoardWriteActivity"
+            android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true" />
@@ -29,7 +43,12 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
+
+       <service android:name="MyNavigationService"
+                android:foregroundServiceType="location">
+
+       </service>
     </application>
 
 </manifest>

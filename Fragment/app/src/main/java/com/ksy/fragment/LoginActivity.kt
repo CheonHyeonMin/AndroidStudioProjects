@@ -35,6 +35,13 @@ class LoginActivity : AppCompatActivity() {
 
         reqQueue = Volley.newRequestQueue(this@LoginActivity)
 
+        //SharedPreference 생성
+        val spf = getSharedPreferences("mySPF", Context.MODE_PRIVATE)
+
+
+        val test = spf.getString("member", "")
+        Log.d("memberState", test.toString())
+
         // btnLogin을 클릭하면 id, pw 가져오기
         // Volley 사용 : node 서버로 요청 (StringRequest)
         // (HTTP Method(POST), URL(http://ip주소:8888/member/login)) -> http manifest 설정
@@ -56,8 +63,7 @@ class LoginActivity : AppCompatActivity() {
                         val result = JSONArray(response)
                         val member = result.getJSONObject(0)
 
-                        //SharedPreference 생성
-                        val spf = getSharedPreferences("mySPF", Context.MODE_PRIVATE)
+
                         //editor 생성
                         val editor = spf.edit()
                         //editor 를 통해서 현재 로그인 한 회원의 정보를 저장!
@@ -84,5 +90,6 @@ class LoginActivity : AppCompatActivity() {
             }
             reqQueue.add(request)
         }
+
     }
 }
